@@ -66,22 +66,22 @@ func CalcularTotal(productos []Producto) float64 {
 // Página de inicio
 func homeHandler(w http.ResponseWriter, r *http.Request) {
 	tmpl := `
-	<!DOCTYPE html>
-	<html lang="en">
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Inicio</title>
-		<link rel="stylesheet" href="/static/css/styles.css">
-	</head>
-	<body>
-		<div class="container">
-			<h1>Bienvenido a la Tienda de Cervezas</h1>
-			<a href="/agregarUsuario" class="btn-submit">Comenzar</a>
-		</div>
-	</body>
-	</html>
-	`
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Inicio</title>
+        <link rel="stylesheet" href="/static/css/styles.css">
+    </head>
+    <body>
+        <div class="container">
+            <h1>Bienvenido a la Tienda de Cervezas</h1>
+            <a href="/agregarUsuario" class="btn-submit">Comenzar</a>
+        </div>
+    </body>
+    </html>
+    `
 	t := template.Must(template.New("home").Parse(tmpl))
 	t.Execute(w, nil)
 }
@@ -100,28 +100,28 @@ func agregarUsuarioHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	tmpl := `
-	<!DOCTYPE html>
-	<html lang="en">
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Agregar Usuario</title>
-		<link rel="stylesheet" href="/static/css/styles.css">
-	</head>
-	<body>
-		<div class="container">
-			<h1>Agregar Usuario</h1>
-			<form action="/agregarUsuario" method="POST">
-				<label for="nombre">Nombre:</label>
-				<input type="text" id="nombre" name="nombre" required>
-				<label for="ci">Cédula:</label>
-				<input type="text" id="ci" name="ci" required>
-				<button type="submit" class="btn-submit">Agregar</button>
-			</form>
-		</div>
-	</body>
-	</html>
-	`
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Agregar Usuario</title>
+        <link rel="stylesheet" href="/static/css/styles.css">
+    </head>
+    <body>
+        <div class="container">
+            <h1>Agregar Usuario</h1>
+            <form action="/agregarUsuario" method="POST">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" required>
+                <label for="ci">Cédula:</label>
+                <input type="text" id="ci" name="ci" required>
+                <button type="submit" class="btn-submit">Agregar</button>
+            </form>
+        </div>
+    </body>
+    </html>
+    `
 	t := template.Must(template.New("agregarUsuario").Parse(tmpl))
 	t.Execute(w, nil)
 }
@@ -173,36 +173,36 @@ func inventarioHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	tmpl := `
-	<!DOCTYPE html>
-	<html lang="en">
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Inventario</title>
-		<link rel="stylesheet" href="/static/css/styles.css">
-	</head>
-	<body>
-		<div class="container">
-			<h1>Realizar Pedido</h1>
-			<form action="/inventario?ci={{.Usuario.CI}}" method="POST">
-				<div class="product-list">
-					{{range .Productos}}
-					<div class="product-item">
-						<img src="{{.Imagen}}" alt="{{.Nombre}}" class="product-image">
-						<h3>{{.Nombre}}</h3>
-						<p>Precio: ${{.Precio}}</p>
-						<p>Cantidad Disponible: {{.Cantidad}}</p>
-						<label for="cantidad_{{.Nombre}}">Cantidad:</label>
-						<input type="number" id="cantidad_{{.Nombre}}" name="cantidad_{{.Nombre}}" min="0" max="{{.Cantidad}}" value="0">
-					</div>
-					{{end}}
-				</div>
-				<button type="submit" class="btn-submit">Realizar Pedido</button>
-			</form>
-		</div>
-	</body>
-	</html>
-	`
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Inventario</title>
+        <link rel="stylesheet" href="/static/css/styles.css">
+    </head>
+    <body>
+        <div class="container">
+            <h1>Realizar Pedido</h1>
+            <form action="/inventario?ci={{.Usuario.CI}}" method="POST">
+                <div class="product-list">
+                    {{range .Productos}}
+                    <div class="product-item">
+                        <img src="{{.Imagen}}" alt="{{.Nombre}}" class="product-image">
+                        <h3>{{.Nombre}}</h3>
+                        <p>Precio: ${{.Precio}}</p>
+                        <p>Cantidad Disponible: {{.Cantidad}}</p>
+                        <label for="cantidad_{{.Nombre}}">Cantidad:</label>
+                        <input type="number" id="cantidad_{{.Nombre}}" name="cantidad_{{.Nombre}}" min="0" max="{{.Cantidad}}" value="0">
+                    </div>
+                    {{end}}
+                </div>
+                <button type="submit" class="btn-submit">Realizar Pedido</button>
+            </form>
+        </div>
+    </body>
+    </html>
+    `
 	data := struct {
 		Usuario   *Usuario
 		Productos []Producto
@@ -220,31 +220,31 @@ func detallePedidoHandler(w http.ResponseWriter, r *http.Request) {
 	for _, orden := range ordenes {
 		if orden.Codigo == codigo {
 			tmpl := `
-			<!DOCTYPE html>
-			<html lang="en">
-			<head>
-				<meta charset="UTF-8">
-				<meta name="viewport" content="width=device-width, initial-scale=1.0">
-				<title>Detalle del Pedido</title>
-				<link rel="stylesheet" href="/static/css/styles.css">
-			</head>
-			<body>
-				<div class="container">
-					<h1>Detalle del Pedido</h1>
-					<p>Número de Orden: <b>{{.Codigo}}</b></p>
-					<p>Usuario: {{.Usuario.NombresCompletos}}</p>
-					<h2>Productos:</h2>
-					<ul>
-						{{range .Productos}}
-						<li>{{.Cantidad}} x {{.Nombre}} - ${{printf "%.2f" .Precio}}</li>
-						{{end}}
-					</ul>
-					<p>Total: ${{printf "%.2f" .Total}}</p>
-					<a href="/pago?codigo={{.Codigo}}" class="btn">Realizar Pago</a>
-				</div>
-			</body>
-			</html>
-			`
+            <!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Detalle del Pedido</title>
+                <link rel="stylesheet" href="/static/css/styles.css">
+            </head>
+            <body>
+                <div class="container">
+                    <h1>Detalle del Pedido</h1>
+                    <p>Número de Orden: <b>{{.Codigo}}</b></p>
+                    <p>Usuario: {{.Usuario.NombresCompletos}}</p>
+                    <h2>Productos:</h2>
+                    <ul>
+                        {{range .Productos}}
+                        <li>{{.Cantidad}} x {{.Nombre}} - ${{printf "%.2f" .Precio}}</li>
+                        {{end}}
+                    </ul>
+                    <p>Total: ${{printf "%.2f" .Total}}</p>
+                    <a href="/pago?codigo={{.Codigo}}" class="btn">Realizar Pago</a>
+                </div>
+            </body>
+            </html>
+            `
 			t := template.Must(template.New("detallePedido").Parse(tmpl))
 			t.Execute(w, orden)
 			return
@@ -260,23 +260,23 @@ func pagoHandler(w http.ResponseWriter, r *http.Request) {
 		if orden.Codigo == codigo {
 			ordenes[i].Pagado = true
 			tmpl := `
-			<!DOCTYPE html>
-			<html lang="en">
-			<head>
-				<meta charset="UTF-8">
-				<meta name="viewport" content="width=device-width, initial-scale=1.0">
-				<title>Pago Realizado</title>
-				<link rel="stylesheet" href="/static/css/styles.css">
-			</head>
-			<body>
-				<div class="container">
-					<h1>Pago Realizado</h1>
-					<p>Gracias por tu compra. El pedido con número <b>{{.Codigo}}</b> ha sido pagado con éxito.</p>
-					<a href="/" class="btn">Volver al Inicio</a>
-				</div>
-			</body>
-			</html>
-			`
+            <!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Pago Realizado</title>
+                <link rel="stylesheet" href="/static/css/styles.css">
+            </head>
+            <body>
+                <div class="container">
+                    <h1>Pago Realizado</h1>
+                    <p>Gracias por tu compra. El pedido con número <b>{{.Codigo}}</b> ha sido pagado con éxito.</p>
+                    <a href="/" class="btn">Volver al Inicio</a>
+                </div>
+            </body>
+            </html>
+            `
 			t := template.Must(template.New("pagoRealizado").Parse(tmpl))
 			t.Execute(w, orden)
 			return
